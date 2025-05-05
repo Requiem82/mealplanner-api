@@ -6,9 +6,10 @@ const TIME_ZONE = 'America/Chicago'; // Change if needed
 const CALENDAR_ID = 'l.campbell0082@gmail.com'; // Replace with your flight calendar ID
 
 const auth = new google.auth.GoogleAuth({
-  credentials: require('../../../service-account.json'),
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
 });
+
 
 export default async function handler(req, res) {
   const calendar = google.calendar({ version: 'v3', auth: await auth.getClient() });
